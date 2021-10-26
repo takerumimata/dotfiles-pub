@@ -1,0 +1,5 @@
+[user]
+	name = Takeru Mimata
+	email = takeru.mimata.dev@gmail.com
+[push]
+	default = current
