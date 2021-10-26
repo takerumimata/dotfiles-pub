@@ -18,8 +18,10 @@ SAVEHIST=1000
 setopt extended_history #ヒストリに実行時間も保存
 setopt hist_ignore_dups #直前と同じコマンドはヒストリに追加しない
 
-#vi ライクな操作ができる
-bindkey -v
+# vi ライクな操作ができる
+# bindkey -v
+# emacsライクな操作
+bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 
