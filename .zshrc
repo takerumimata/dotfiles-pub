@@ -7,8 +7,10 @@ export LANG=ja_JP.UTF-8 #文字コードをUTF-8に設定
 
 # プロンプト設定
 #PROMPT=$'%{\e[30;48;5;082m%}%{\e[38;5;001m%}[%n@%m]%{\e[0m%}'
-PROMPT="%F{0117}[%n:%~] $ %f%k"
-#PROMPT='[mimatatakeru:%~:%n] $ '
+# PROMPT="%F{0117}[%n:%~] $ %f"
+# PROMPT="%F{0117}%~ $ %f"
+# PROMPT="%F{0117}%~ %F{0196}❯%F{214}❯%F{041}❯%f "
+eval "$(starship init zsh)"
 
 # ビープ音を鳴らさない
 setopt no_beep
@@ -145,5 +147,31 @@ compdef _work work
 # pythonのデフォルトをpython3にする
 alias python=python3
 
-
 source /Users/mimatatakeru/.config/broot/launcher/bash/br
+
+# for aws cli
+export AWS_DEFAULT_PROFILE=takeru-m1-max
+# aws completion
+complete -C '/usr/local/bin/aws_completer' aws
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# syntax highlight for shell command
+zinit light zsh-users/zsh-syntax-highlighting
+
+# auto suggestion
+zinit light zsh-users/zsh-autosuggestions
+
